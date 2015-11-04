@@ -1,0 +1,39 @@
+{
+    "name": "avvertix/pronto-cms-framework",
+    "description": "The Laravel Lumen Framework.",
+    "keywords": ["framework", "pronto", "cms"],
+    "license": "GPL-3.0",
+    "homepage": "https://github.com/avvertix/pronto-cms",
+    "support": {
+        "issues": "https://github.com/avvertix/pronto-cms/issues",
+        "source": "https://github.com/avvertix/pronto-cms"
+    },
+    "authors": [
+        {
+            "name": "Alessio Vertemati",
+            "email": "avsoft@gmail.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.5.9",
+        "illuminate/support": "5.1.*",
+        "illuminate/filesystem": "5.1.*",
+        "paragonie/random_compat": "^1.0.6",
+        "symfony/var-dumper": "2.7.*",
+        "erusev/parsedown": "~1.6",
+        "erusev/parsedown-extra": "0.7.*"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "~4.0",
+        "mockery/mockery": "~0.9"
+    },
+    "autoload": {
+        "psr-4": {
+            "Pronto\\": "src/"
+        },
+        "files": [
+            "src/helpers.php"
+        ]
+    },
+    "minimum-stability": "dist"
+}

@@ -1,0 +1,18 @@
+{
+	"menu": [
+		{
+			"title": "Git",
+			"ref": "http://git.project"
+		},
+		{
+			"title": "Sub Section Promoted",
+			"type": "section",
+			"ref": "example-section/sub-section-1"
+		},
+		{
+			"title": "Home",
+			"type": "page",
+			"ref": "index.md"
+		}
+	]
+}
