@@ -93,4 +93,46 @@ class ContentServiceTest extends TestCase
         $this->assertContainsOnlyInstancesOf('Pronto\Content\MenuItem', $menu->all());
         
     }
+    
+    public function testGetPage()
+    {
+        $page = content()->page('index');
+        
+        var_dump($page);
+        
+        $this->assertInstanceOf('Pronto\Content\PageItem', $page);
+        
+        
+        $page = content()->page('index.md', 'example-section');
+        
+        var_dump($page);
+        
+        $this->assertInstanceOf('Pronto\Content\PageItem', $page);
+        
+        
+        $page = content()->page('page-1-1.md', 'example-section/sub-section-1/');
+        
+        var_dump($page);
+        
+        $this->assertInstanceOf('Pronto\Content\PageItem', $page);
+        
+        $page = content()->page('page-1-1', 'example-section/sub-section-1');
+        
+        var_dump($page);
+        
+        $this->assertInstanceOf('Pronto\Content\PageItem', $page);
+        
+        // $this->assertEquals(8, $menu->count());
+        
+        // $this->assertContainsOnlyInstancesOf('Pronto\Content\MenuItem', $menu->all());
+        
+    }
+    
+    /**
+     * @expectedException Pronto\Exceptions\PageNotFoundException
+     */
+    public function testGetPageNotFound()
+    {
+        $page = content()->page('home');
+    }
 }

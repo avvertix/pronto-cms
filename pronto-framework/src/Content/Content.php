@@ -8,6 +8,7 @@ use Illuminate\Support\Collection;
 use Symfony\Component\Finder\Finder;
 
 use Pronto\Exceptions\InvalidMenuItemException;
+use Pronto\Exceptions\PageNotFoundException;
 
 class Content implements ContentContract
 {
@@ -100,14 +101,38 @@ class Content implements ContentContract
      * return the pages that belongs to a specified section
      */
 	function pages($section = null){
-        return $this->getNavigationMenu();
+        return null;
     }
     
     /**
-     * return the file that correspond to the requested page
+     * Find a page by its filename or slug. Optionally you can specify the section which contains the page
      */
-    function page($name, $section){
+    function page($name, $section = null){
+        // PageNotFoundException
         
+        $directory = $this->storage_path . (!is_null($section) ? DIRECTORY_SEPARATOR . $section : '');
+        
+        $name = ends_with($name, '.md') ? $name : $name . '.md';
+        
+        $finder = Finder::create()->in($directory)->files()->name($name)->depth(0);
+        
+        if(is_null($section)){
+            
+        }
+        
+        $count = iterator_count($finder);
+        
+        if($count==0){
+            throw new PageNotFoundException($name . (!is_null($section) ? ' in ' . $section : ''));
+        }
+        
+        $pg = iterator_to_array($finder, false)[0];
+        
+        var_dump(compact('name', 'section', 'directory', 'count', 'pg'));
+        
+        $filename = $pg->getFilename();
+        
+        return PageItem::make($pg); //, self::filename_to_title($filename), $this->str_to_slug($filename), null);
     }
 	
     /**
@@ -196,11 +221,17 @@ class Content implements ContentContract
     
     
     public static function str_to_slug($str){
+        $str = str_replace('.md', '', $str);
         return str_slug($str);
     } 
     
     public static function slug_to_str($slug){
         return ucwords(str_replace('_', ' ', str_replace('-', ' ', $slug)));
+    }
+    
+    public static function filename_to_title($str){
+        $str = str_replace('.md', '', $str);
+        return ucwords(str_replace('_', ' ', str_replace('-', ' ', str_slug($str))));
     }
     
     
