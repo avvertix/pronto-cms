@@ -15,13 +15,15 @@ class MenuItem
 	private $type = null;
 	private $path = null;
 	private $level = null;
+	private $description = null;
 
 
-	private function __construct($name, $type, $path, $level = 1){
+	private function __construct($name, $type, $path, $description = null, $level = 1){
 		$this->title = $name;
 		$this->type = $type;
 		$this->path = $path;
 		$this->level = $level;
+		$this->description = $description;
 	}
 
 
@@ -39,6 +41,10 @@ class MenuItem
 	
 	public function level(){
 		return $this->level;
+	}
+	
+	public function slug(){
+		return str_replace('.md', '', basename($this->path));
 	}
 
 

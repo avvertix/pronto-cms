@@ -10,7 +10,7 @@ interface Content
 	
 	function sections();
 	
-	function section_navigation($section);
+	function section_menu($section);
 	
 	
 

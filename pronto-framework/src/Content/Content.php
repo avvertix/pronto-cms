@@ -5,6 +5,7 @@ namespace Pronto\Content;
 use Pronto\Contracts\Content as ContentContract;
 use Illuminate\Filesystem\Filesystem;
 use Illuminate\Support\Collection;
+use Symfony\Component\Finder\Finder;
 
 use Pronto\Exceptions\InvalidMenuItemException;
 
@@ -95,20 +96,95 @@ class Content implements ContentContract
         return Collection::make($items);
     }
 	
+    /**
+     * return the pages that belongs to a specified section
+     */
 	function pages($section = null){
         return $this->getNavigationMenu();
     }
     
+    /**
+     * return the file that correspond to the requested page
+     */
     function page($name, $section){
         
     }
 	
+    /**
+     * Get the first level sections that could be found in a specific section. 
+     * If no section is specified the list of first level section in the content 
+     * folder are returned
+     */
 	function sections($section = null){
-    
+        
+        // elenco delle section
+        
+        $directory = $this->storage_path . (!is_null($section) ? '/' . $section : '');
+        
+        $finder = Finder::create()->in($directory)->directories()->depth(0);
+        
+        $sections = array();
+        
+        foreach ($finder as $file) {
+            // Dump the absolute path
+        //     
+        //     var_dump($file->getFilename());
+        //     var_dump($file->isDir());
+        //     var_dump($file->isFile());
+        //     
+        //     var_dump($file->getRealpath());
+        // 
+        //     // Dump the relative path to the file, omitting the filename
+        //     var_dump($file->getRelativePath());
+        // 
+        //     // Dump the relative path to the file
+        //     var_dump($file->getRelativePathname());
+        //     
+        //     var_dump('----------------');
+        
+        // $file_obj = new stdObject();
+        
+        // 'name' => $file->getFilename(),
+        //         'path' => $file->getRealpath(),
+        //         'parent' => $file->getRelativePath(),
+        //         'relative_path_name' => $file->getRelativePathname(),
+        
+            $sections[] = $file;
+        }
+
+        return Collection::make($sections);
     }
 	
-	function section_navigation($section = null){
-    
+    /**
+     * Return the navigation menu for the specified section.
+     *
+     * The navigation menu consists in sections, pages and other sub-sections
+     *
+     * @returns collection of MenuItem
+     */
+	function section_menu($section){
+        
+        // tutte le sub-section e le rispettive page presenti in ogni section
+        
+        $directory = $this->storage_path . (!is_null($section) ? '/' . $section : '');
+        
+        $finder = Finder::create()->in($directory)->depth("< 2");
+        
+        $items = array();
+        
+        foreach ($finder as $file) {
+            
+            if($file->isDir()){
+                // TODO: considering depth < 2 here we could expect level 1 and 2 (or 0 and 1) for a section
+                $items[] = MenuItem::section(self::slug_to_str($file->getFilename()), $file->getRelativePathname());
+            }
+            else {
+                $items[] = MenuItem::page(self::slug_to_str($file->getFilename()), $file->getRelativePathname());
+            }
+            
+        }
+        
+        return Collection::make($items);
     }
     
     /**
@@ -116,6 +192,15 @@ class Content implements ContentContract
     */
     private function _all(){
         // faccio lo scan ricorsivo di tutto il contenuto nella cartella "content"
+    }
+    
+    
+    public static function str_to_slug($str){
+        return str_slug($str);
+    } 
+    
+    public static function slug_to_str($slug){
+        return ucwords(str_replace('_', ' ', str_replace('-', ' ', $slug)));
     }
     
     
@@ -190,6 +275,6 @@ class Content implements ContentContract
         
         return $menu;
     }
-	
+
 
 }

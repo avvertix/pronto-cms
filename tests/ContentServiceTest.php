@@ -59,4 +59,38 @@ class ContentServiceTest extends TestCase
         
         // TODO: test items are equal to given menu items
     }
+    
+    public function testGetSections()
+    {
+        $sections = content()->sections();
+        
+        var_dump($sections);
+        
+        $this->assertInstanceOf('Illuminate\Support\Collection', $sections);
+        
+        $this->assertEquals(1, $sections->count());
+        
+        
+        $sections2 = content()->sections('example-section');
+        
+        var_dump($sections2);
+        
+        $this->assertInstanceOf('Illuminate\Support\Collection', $sections2);
+        
+        $this->assertEquals(2, $sections2->count());
+    }
+    
+    public function testGetSectionMenu()
+    {
+        $menu = content()->section_menu('example-section');
+        
+        var_dump($menu);
+        
+        $this->assertInstanceOf('Illuminate\Support\Collection', $menu);
+        
+        $this->assertEquals(8, $menu->count());
+        
+        $this->assertContainsOnlyInstancesOf('Pronto\Content\MenuItem', $menu->all());
+        
+    }
 }
