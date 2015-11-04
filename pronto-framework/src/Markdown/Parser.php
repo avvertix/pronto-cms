@@ -3,6 +3,7 @@
 namespace Pronto\Markdown;
 
 use ParsedownExtra;
+use Illuminate\Contracts\Filesystem\FileNotFoundException;
 
 class Parser
 {
@@ -18,7 +19,11 @@ class Parser
 	}
 	
 	public function file($path){
-		// TODO: throw exception if the file do not exists
+		
+		if(@file_exists($path) && @is_file($path)){
+			throw new FileNotFoundException();
+		}
+		
 		return $this->text(@file_get_contents($path));
 	}
 
