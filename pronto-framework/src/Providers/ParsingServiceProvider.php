@@ -30,11 +30,6 @@ class ParsingServiceProvider extends ServiceProvider
                 
                 return $parser;
             });
-            
-            
-            
-            // $this->app->singleton('Riak\Contracts\Connection', function ($app) {
-            //     return new Connection(config('riak'));
-            // });
+
         }
 }
