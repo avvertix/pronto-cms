@@ -1,0 +1,274 @@
+@import (less) 'node_modules/sanitize.css/dist/sanitize.css';
+
+// Color Scheme http://colorhunt.co/#d5441c013c4d9dd5cbf3e5b1
+
+@primary: #D5441C;
+@darkmatter: #013C4D;
+@lightmatter: #9DD5CB;
+@light: #F3E5B1;
+@lightgrey: greyscale(lighten(#F3E5B1, 15%));
+@text: #222;
+
+// Base Unit
+
+@base-unit: 1.5rem;
+
+// Font and typography
+
+@body-font: "Source Sans Pro", sans-serif;
+
+html {
+    font-size: 137.5%;
+    line-height: 1.5rem;
+}
+
+body {
+    font-family: @body-font;
+}
+
+p {
+    margin-top: 1.5rem;
+    margin-bottom: 0;
+}
+ul,
+ol {
+    margin-top: 1.5rem;
+    margin-bottom: 1.5rem;
+    padding: 0 1.5rem;
+}
+
+ul ul,
+ol ul,
+ul ol,
+ol ol {
+    margin-top: 0;
+    margin-bottom: 0;
+}
+blockquote {
+    margin-top: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+h1,h2,h3,h4,h5,h6 {
+  margin-top: 1.5rem;
+  margin-bottom: 0;
+}
+h1 {
+  font-size: 2.6rem;
+  line-height: 2.8rem;
+}
+h2 {
+  font-size: 2rem;
+  line-height: 2.25rem;
+}
+h3 {
+  font-size: 1.4rem;
+}
+
+table {
+  margin-top: 1.5rem;
+  border-spacing: 0px;
+  border-collapse: collapse;
+}
+table td,
+table th {
+  padding: 0;
+  line-height: 33px;
+}
+
+code {
+  vertical-align: bottom;
+}
+
+//////////////////
+//  Atoms       //
+//////////////////
+
+// Anchor styles
+
+a {
+    color: @primary;
+    text-decoration: underline;
+    
+    &:hover {
+        color: darken(@primary, 10%);
+        
+    }
+    
+    &:active {
+        color: darken(@primary, 20%);
+        background: @light;
+    }
+    
+    &:focus {
+        background: @light;
+    }
+    
+    &:visited {
+        color: @primary;
+    }
+    
+    &:target {
+        font-weight: bold;
+    }
+}
+
+
+img {
+    max-width:100%;
+}
+
+.fixed {
+    position: fixed;
+}
+
+blockquote {
+    background: @light;
+    padding: 1rem;
+    
+    p {
+        margin: 0;
+    }
+}
+
+// Structural
+
+@sidebar-width: 212px;
+
+body, html {
+    background-color: @lightgrey;
+}
+
+body {
+    margin: 0 0 @base-unit 0;
+    padding: 0;
+    width: 100%;    
+    color: @text;
+}
+
+
+.container {
+    // display: table;
+    width: 100%;
+    
+    padding-top: 12px;
+    
+    @media(min-width:1200px){
+        width: 80%;
+        margin: 0 auto;
+    }
+}
+
+.content {
+    
+    max-width: 80%;
+    padding: 0 @base-unit;
+    
+    margin-left: @sidebar-width;
+    
+    h1:first-of-type {
+        margin-top: 0;
+    }
+}
+
+.title {
+    font-size: 18px;
+    font-weight: 600;
+}
+
+nav {
+    display: inline-block;
+}
+
+.sidebar {
+    width: @sidebar-width;
+    padding-left: 6px;
+    vertical-align: top;
+    position: relative;
+}
+
+header {
+    box-sizing:border-box;
+    display: block;
+    width: 100%;
+    height: 52px;
+    
+    // padding: 12px 0;
+    
+    background: @darkmatter;
+    
+    a, a:visited {
+        color: @light;
+        text-decoration: none;
+    }
+    
+    a:hover {
+        color: @lightmatter
+    }
+    
+    a:active {
+        color: @darkmatter;
+        background: @lightmatter;
+    }
+    
+    .title {
+        padding-left: 6px;
+        width: @sidebar-width;
+    }
+    
+    nav {
+        @media(min-width:1200px){
+            width: 80%;
+            text-align: right;
+        }
+    }
+
+}
+
+ul.no-style {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+.menu {
+    margin: 0;
+}
+
+.menu li {
+    display: inline-block;
+    list-style-type: none;
+    margin-left: @base-unit
+}
+
+
+
+table {
+        border-collapse: collapse;
+        
+        border: 1px solid #222;
+        
+        width: 100%;
+}
+table tr, table td, table th {
+        border: 1px solid #222;
+}
+
+.group {
+    font-size: 1rem;
+    font-weight: 600;
+    padding-bottom: 4px;
+    margin-bottom: 4px;
+    border-bottom: 1px dashed @darkmatter;
+    
+    &:first-of-type {
+        margin-top: 0;
+    }
+}
+
+
+
+
+/* Syntaxt highlight style */
+
+@import (less) 'node_modules/highlight.js/styles/tomorrow.css';
