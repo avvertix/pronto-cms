@@ -20,7 +20,7 @@ class Parser
 	
 	public function file($path){
 		
-		if(@file_exists($path) && @is_file($path)){
+		if(!@file_exists($path) && !@is_file($path)){
 			throw new FileNotFoundException();
 		}
 		
