@@ -19,7 +19,9 @@ $app->get('/', ['as' => 'home', function(){
     
     // dd(content()->pages());
     
-    return pageview( content_path('index.md'), 'welcome');
+    // Need ViewResolver service to get the view based on the applied theme
+    
+    return pageview(content_path('index.md'), 'default.frontpage');
 }]);
 
 
