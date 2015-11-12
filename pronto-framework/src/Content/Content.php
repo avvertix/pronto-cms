@@ -108,17 +108,12 @@ class Content implements ContentContract
      * Find a page by its filename or slug. Optionally you can specify the section which contains the page
      */
     function page($name, $section = null){
-        // PageNotFoundException
         
         $directory = $this->storage_path . (!is_null($section) ? DIRECTORY_SEPARATOR . $section : '');
         
         $name = ends_with($name, '.md') ? $name : $name . '.md';
         
         $finder = Finder::create()->in($directory)->files()->name($name)->depth(0);
-        
-        if(is_null($section)){
-            
-        }
         
         $count = iterator_count($finder);
         
@@ -128,11 +123,7 @@ class Content implements ContentContract
         
         $pg = iterator_to_array($finder, false)[0];
         
-        var_dump(compact('name', 'section', 'directory', 'count', 'pg'));
-        
-        $filename = $pg->getFilename();
-        
-        return PageItem::make($pg); //, self::filename_to_title($filename), $this->str_to_slug($filename), null);
+        return PageItem::make($pg, $section);
     }
 	
     /**

@@ -98,33 +98,31 @@ class ContentServiceTest extends TestCase
     {
         $page = content()->page('index');
         
-        var_dump($page);
-        
         $this->assertInstanceOf('Pronto\Content\PageItem', $page);
+        
+        $this->assertEquals('Index', $page->title());
+        $this->assertEquals('index', $page->slug());
+        $this->assertEquals('/index.md', $page->path());
         
         
         $page = content()->page('index.md', 'example-section');
         
-        var_dump($page);
-        
         $this->assertInstanceOf('Pronto\Content\PageItem', $page);
+        
+        $this->assertEquals('Index', $page->title());
         
         
         $page = content()->page('page-1-1.md', 'example-section/sub-section-1/');
         
-        var_dump($page);
-        
         $this->assertInstanceOf('Pronto\Content\PageItem', $page);
+        
+        $this->assertEquals('Page 1 1', $page->title());
+        $this->assertEquals('page-1-1', $page->slug());
+        $this->assertEquals('example-section/sub-section-1/page-1-1.md', $page->path());
         
         $page = content()->page('page-1-1', 'example-section/sub-section-1');
         
-        var_dump($page);
-        
         $this->assertInstanceOf('Pronto\Content\PageItem', $page);
-        
-        // $this->assertEquals(8, $menu->count());
-        
-        // $this->assertContainsOnlyInstancesOf('Pronto\Content\MenuItem', $menu->all());
         
     }
     
