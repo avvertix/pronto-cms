@@ -2,7 +2,7 @@
 	"menu": [
 		{
 			"title": "Git",
-			"ref": "http://git.project"
+			"ref": "http://your.awesome.git.project"
 		},
 		{
 			"title": "Sub Section Promoted",
@@ -12,7 +12,7 @@
 		{
 			"title": "Home",
 			"type": "page",
-			"ref": "index.md"
+			"ref": "index"
 		}
 	]
 }

@@ -17,6 +17,11 @@
 
 @body-font: "Source Sans Pro", sans-serif;
 
+
+.love {
+    color: @primary;
+}
+
 html {
     font-size: 137.5%;
     line-height: 1.5rem;
@@ -225,6 +230,11 @@ header {
 
 }
 
+footer {
+    color: lighten(@text, 40%);
+    padding-top: 2em !important;
+}
+
 ul.no-style {
     list-style-type: none;
     margin: 0;
@@ -270,5 +280,10 @@ table tr, table td, table th {
 
 
 /* Syntaxt highlight style */
+
+code {
+    background: lighten(@light, 10%);
+    color: @primary;    
+}
 
 @import (less) 'node_modules/highlight.js/styles/tomorrow.css';

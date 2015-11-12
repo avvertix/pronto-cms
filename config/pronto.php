@@ -13,7 +13,7 @@ return [
     |
     */
 
-    'title' => env('PRONTO_APP_TITLE', 'Pronto CMS'),
+    'title' => env('PRONTO_APP_TITLE', 'Your Pronto &micro;-site'),
     
     'logo' => env('PRONTO_APP_LOGO', 'logo.png'),
     

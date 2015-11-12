@@ -1,9 +1,9 @@
 @extends('global')
 
 @section('header')
-	include('header')
+	@include('header')
 @endsection
 
 @section('footer')
-	include('footer')
+	@include('footer')
 @endsection
