@@ -105,6 +105,18 @@ class Content implements ContentContract
     }
     
     /**
+     * Check if the specified path match to a section
+     */
+    function is_section($path){
+        try {
+            $this->page( basename($path), dirname($path));
+            return false;
+        }catch(PageNotFoundException $pnfe){
+            return true;
+        }
+    }
+    
+    /**
      * Find a page by its filename or slug. Optionally you can specify the section which contains the page
      */
     function page($name, $section = null){

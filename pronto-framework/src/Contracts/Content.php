@@ -12,6 +12,8 @@ interface Content
 	
 	function section_menu($section);
 	
+	function is_section($path);
+	
 	
 
 }
