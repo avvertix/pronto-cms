@@ -4,11 +4,12 @@ namespace Pronto\Content;
 
 use Symfony\Component\Finder\SplFileInfo;
 use Pronto\Content\Content;
+use Pronto\Contracts\Menuable;
 
 /**
  * Describe a Section
  */
-class SectionItem
+class SectionItem  implements Menuable
 {
 
 	private $title = null;
@@ -50,6 +51,10 @@ class SectionItem
 		return $this->path;
 	}
 	
+	public function link_to(){
+		return route('page', ['page' => $this->path]);
+	}
+	
 	/**
 	 * The page slug, created from the page title
 	 *
@@ -73,6 +78,14 @@ class SectionItem
 	 */
 	public function filepath(){
 		return $this->file->getRealPath();
+	}
+	
+	function childs(){
+		return content()->section_menu($this->path);
+	}
+	
+	function is_group(){
+		return true;
 	}
 
 

@@ -48,7 +48,7 @@ class PageController extends Controller
         // Show the configured home page
         // all pages must have the menu
         
-        return view('global', ['menu' => $this->getNavigationMenu()]);
+        return pageview(content_path('index.md'), 'default.frontpage');
         
     }
     
@@ -62,17 +62,51 @@ class PageController extends Controller
      * @param  string  $page The page slug that needs to be loaded
      * @return Response
      */
-    public function show($section, $page)
+    public function show($page)
     {
-    
-        $content = $this->getDocPage($section, $page);
         
-        $title = ucwords(str_replace('_', ' ', str_replace('-', ' ', $page)));
+        // is a page or a section ?
+        
+        $section = dirname($page);
+        
+        $is_section = content()->is_section($page);
+        
+        $page = basename($page);
+        
+        $data = [];
+        
+        if($is_section){
+            // dd(compact('section', 'page', 'is_section'));
+            
+            // grab the index.md in the section for the content
+            
+            $data = array_merge([
+                'content' => 'This is a section',
+                'page_title' => 'section',
+                'navigation' => content()->section_menu($section . '/' . $page)
+            ], $data);
+            
+            return view('default.section', $data);
+        }
+        else {
+            
+            $pageitem = content()->page($page, $section);
+            
+            $content = app('Pronto\Markdown\Parser')->text($pageitem->content());
+
+            $data = array_merge([
+                'content' => $content,
+                'page_title' => $pageitem->title(),
+                'navigation' => content()->section_menu($section)
+            ], $data);
+            
+        }
+        
+        // dd($data);
+        
+        return view('default.page', $data);
     
-        return view('global', [
-            'content' => $content, 
-            'page_title' => $title, 
-            'menu' => $this->getNavigationMenu()]);
+        
 
     }
     

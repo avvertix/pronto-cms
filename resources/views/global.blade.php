@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html><head>
-<title>@section('title') @if(isset($page_title)) {{$page_title}} @endsection - @endif {{config('pronto.title')}}</title>
+<title>@if(isset($page_title)) {{$page_title}} - @endif {{config('pronto.title')}}</title>
 <meta charset="utf-8" />
 
 <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400,700,200italic,400italic,700italic">

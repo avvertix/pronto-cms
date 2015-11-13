@@ -175,7 +175,7 @@ class Content implements ContentContract
         
         $directory = $this->storage_path . (!is_null($section) ? '/' . $section : '');
         
-        $finder = Finder::create()->in($directory)->depth("< 2");
+        $finder = Finder::create()->in($directory)->depth("< 1");
         
         $items = array();
         
@@ -183,14 +183,16 @@ class Content implements ContentContract
             
             if($file->isDir()){
                 // TODO: considering depth < 2 here we could expect level 1 and 2 (or 0 and 1) for a section
-                $items[] = MenuItem::section(self::slug_to_str($file->getFilename()), $file->getRelativePathname());
+                $items[] = SectionItem::make($file, $section);
             }
             else {
-                $items[] = MenuItem::page(self::slug_to_str($file->getFilename()), $file->getRelativePathname());
+                $items[] = PageItem::make($file, $section);
             }
             
         }
         
+        // SectionItem with child (SectionItem || PageItem)
+        // dd($items);
         return Collection::make($items);
     }
     

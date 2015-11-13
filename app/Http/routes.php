@@ -1,5 +1,7 @@
 <?php
 
+
+
 /*
 |--------------------------------------------------------------------------
 | Application Routes
@@ -15,14 +17,22 @@
     Home Route
     Handles the application index
 */
-$app->get('/', ['as' => 'home', function(){
-    
-    // dd(content()->pages());
-    
-    // Need ViewResolver service to get the view based on the applied theme
-    
-    return pageview(content_path('index.md'), 'default.frontpage');
-}]);
+$app->get('/', [
+    'as' => 'home', 
+    'uses' => 'PageController@index'
+]);
+// $app->get('/a/{page:[A-Za-z0-9\-\/]+}', [
+//     'as' => 'page', 
+//     'uses' => 'AssetsController@show'
+// ]);
+// $app->get('/i/{page:[A-Za-z0-9\-\/]+}', [
+//     'as' => 'page', 
+//     'uses' => 'ImagesController@show'
+// ]);
+$app->get('/{page:[A-Za-z0-9\-\/]+}', [
+    'as' => 'page', 
+    'uses' => 'PageController@show'
+]);
 
 
 // /[{section}/[{sub-section}]/[{sub-sub-section}]/]{page} => general page route, must support first level page, and Nth level page with N folder nesting
