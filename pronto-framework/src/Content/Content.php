@@ -142,30 +142,9 @@ class Content implements ContentContract
         $sections = array();
         
         foreach ($finder as $file) {
-            // Dump the absolute path
-        //     
-        //     var_dump($file->getFilename());
-        //     var_dump($file->isDir());
-        //     var_dump($file->isFile());
-        //     
-        //     var_dump($file->getRealpath());
-        // 
-        //     // Dump the relative path to the file, omitting the filename
-        //     var_dump($file->getRelativePath());
-        // 
-        //     // Dump the relative path to the file
-        //     var_dump($file->getRelativePathname());
-        //     
-        //     var_dump('----------------');
-        
-        // $file_obj = new stdObject();
-        
-        // 'name' => $file->getFilename(),
-        //         'path' => $file->getRealpath(),
-        //         'parent' => $file->getRelativePath(),
-        //         'relative_path_name' => $file->getRelativePathname(),
-        
-            $sections[] = $file;
+
+            $sections[] = SectionItem::make($file, $section);
+            
         }
 
         return Collection::make($sections);

@@ -64,16 +64,18 @@ class ContentServiceTest extends TestCase
     {
         $sections = content()->sections();
         
-        var_dump($sections);
+        // var_dump($sections);
         
         $this->assertInstanceOf('Illuminate\Support\Collection', $sections);
+        
+        $this->assertContainsOnlyInstancesOf('Pronto\Content\SectionItem', $sections->all());
         
         $this->assertEquals(1, $sections->count());
         
         
         $sections2 = content()->sections('example-section');
         
-        var_dump($sections2);
+        // var_dump($sections2);
         
         $this->assertInstanceOf('Illuminate\Support\Collection', $sections2);
         
