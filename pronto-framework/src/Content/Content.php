@@ -204,17 +204,16 @@ class Content implements ContentContract
         foreach ($finder as $file) {
             
             if($file->isDir()){
-                // TODO: considering depth < 2 here we could expect level 1 and 2 (or 0 and 1) for a section
                 $items[] = SectionItem::make($file, $section);
             }
-            else {
+            else if($file->getFileName() !== 'index.md'){
                 $items[] = PageItem::make($file, $section);
             }
             
         }
         
         // SectionItem with child (SectionItem || PageItem)
-        // dd($items);
+        // dd(compact('items', 'section'));
         return Collection::make($items);
     }
     

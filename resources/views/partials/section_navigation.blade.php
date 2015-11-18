@@ -6,7 +6,7 @@
 
 	@if($element->is_group())
 
-	<h3 class="group">{{$element->title()}}</h3>
+	<h3 class="group"><a href="{{$element->link_to()}}">{{$element->title()}}</a></h3>
 	
 		<ul>
 		@foreach($element->childs() as $child)
