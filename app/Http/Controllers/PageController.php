@@ -76,14 +76,16 @@ class PageController extends Controller
         $data = [];
         
         if($is_section){
-            // dd(compact('section', 'page', 'is_section'));
+
+            $sec_path = $section . '/' . $page;
             
+            $sec_item = content()->section($sec_path);
             // grab the index.md in the section for the content
             
             $data = array_merge([
-                'content' => 'This is a section',
-                'page_title' => 'section',
-                'navigation' => content()->section_menu($section . '/' . $page)
+                'content' => '<h1>'.$sec_item->title().'</h1><p>This is a section content only for example</p>',
+                'page_title' => $sec_item->title(),
+                'navigation' => content()->section_menu($section)
             ], $data);
             
             return view('default.section', $data);
