@@ -137,6 +137,28 @@ class Content implements ContentContract
         
         return PageItem::make($pg, $section);
     }
+    
+    function section($section){
+        $directory = $this->storage_path . (!is_null($section) ? DIRECTORY_SEPARATOR . dirname($section) : '');
+        
+        $name = basename($section);
+        
+        $finder = Finder::create()->in($directory)->directories()->name($name)->depth(0);
+        
+        
+        
+        $count = iterator_count($finder);
+        
+        if($count==0){
+            throw new PageNotFoundException($name . (!is_null($section) ? ' in ' . dirname($section) : ''));
+        }
+        
+        $pg = iterator_to_array($finder, false)[0];
+        
+        // dd(compact('directory', 'name', 'pg'));
+        
+        return SectionItem::make($pg, $section);
+    }
 	
     /**
      * Get the first level sections that could be found in a specific section. 

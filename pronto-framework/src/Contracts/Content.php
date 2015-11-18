@@ -8,6 +8,8 @@ interface Content
 	
 	function pages();
 	
+	function section($section);
+	
 	function sections();
 	
 	function section_menu($section);
