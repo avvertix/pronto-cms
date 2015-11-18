@@ -2,7 +2,9 @@
 
 namespace Pronto\Content;
 
-class MenuItem
+use Pronto\Contracts\Menuable;
+
+class MenuItem implements Menuable
 {
 
 	const SECTION = 'section';
@@ -47,7 +49,16 @@ class MenuItem
 		return str_replace('.md', '', basename($this->path));
 	}
 
-
+	public function link_to(){
+		if($this->type === self::LINK){
+			return $this->path;
+		}
+		return route('page', ['page' => $this->path]);
+	}
+	
+	function is_group(){
+		return false;
+	}
 
 
 	public static function section($name, $path, $level = 1){
