@@ -81,7 +81,13 @@ class SectionItem  implements Menuable
 	}
 	
 	function childs(){
-		return content()->section_menu($this->path);
+		$usable_path = $this->path;
+		
+		// if(starts_with($this->path, '.')){
+		// 	$usable_path  = $this->file->getRelativePath();
+		// }
+		
+		return content()->section_menu($usable_path);
 	}
 	
 	function is_group(){

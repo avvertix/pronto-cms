@@ -99,7 +99,7 @@ class PageController extends Controller
             $data = array_merge([
                 'content' => $content,
                 'page_title' => $pageitem->title(),
-                'navigation' => content()->section_menu($section)
+                'navigation' => content()->section_menu(dirname($section))
             ], $data);
             
         }

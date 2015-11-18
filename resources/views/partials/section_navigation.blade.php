@@ -18,7 +18,7 @@
 	
 	@else
 	
-	<a href="{{$element->path()}}">{{$element->title()}}</a>
+	<a href="{{$element->link_to()}}">{{$element->title()}}</a>
 	
 	@endif
 	
