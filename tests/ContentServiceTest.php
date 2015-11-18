@@ -56,6 +56,7 @@ class ContentServiceTest extends TestCase
         $this->assertEquals(3, $content_service->count());
         
         $this->assertContainsOnlyInstancesOf('Pronto\Content\MenuItem', $content_service->all());
+        $this->assertContainsOnlyInstancesOf('Pronto\Contracts\Menuable', $content_service->all());
         
         // TODO: test items are equal to given menu items
     }
@@ -92,7 +93,7 @@ class ContentServiceTest extends TestCase
         
         $this->assertEquals(8, $menu->count());
         
-        $this->assertContainsOnlyInstancesOf('Pronto\Content\MenuItem', $menu->all());
+        $this->assertContainsOnlyInstancesOf('Pronto\Contracts\Menuable', $menu->all());
         
     }
     
@@ -104,7 +105,7 @@ class ContentServiceTest extends TestCase
         
         $this->assertEquals('Index', $page->title());
         $this->assertEquals('index', $page->slug());
-        $this->assertEquals('/index.md', $page->path());
+        $this->assertEquals('/index', $page->path());
         
         
         $page = content()->page('index.md', 'example-section');
@@ -120,7 +121,7 @@ class ContentServiceTest extends TestCase
         
         $this->assertEquals('Page 1 1', $page->title());
         $this->assertEquals('page-1-1', $page->slug());
-        $this->assertEquals('example-section/sub-section-1/page-1-1.md', $page->path());
+        $this->assertEquals('example-section/sub-section-1/page-1-1', $page->path());
         
         $page = content()->page('page-1-1', 'example-section/sub-section-1');
         
