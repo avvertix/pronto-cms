@@ -92,7 +92,10 @@ class SectionItem  implements Menuable
 	
 	
 	function content(){
-		return '';
+		//if page index.md exists in section => return index.md content
+		
+		
+		return 'This section does not have a default `index.md` file, so *use navigation Luke*';
 	}
 	
 	function is_group(){
