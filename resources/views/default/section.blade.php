@@ -13,8 +13,6 @@
 	@if(isset($content))
 		{!! $content !!}
 	@endif
-
-<pre><code>{{var_dump($navigation)}}</code></pre>
 	
 </div>
 	
