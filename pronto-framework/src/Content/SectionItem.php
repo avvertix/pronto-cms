@@ -90,6 +90,11 @@ class SectionItem  implements Menuable
 		return content()->section_menu($usable_path);
 	}
 	
+	
+	function content(){
+		return '';
+	}
+	
 	function is_group(){
 		return true;
 	}

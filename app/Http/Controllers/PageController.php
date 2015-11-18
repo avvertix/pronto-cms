@@ -82,8 +82,10 @@ class PageController extends Controller
             $sec_item = content()->section($sec_path);
             // grab the index.md in the section for the content
             
+            $content = app('Pronto\Markdown\Parser')->text($sec_item->content());
+            
             $data = array_merge([
-                'content' => '<h1>'.$sec_item->title().'</h1><p>This is a section content only for example</p>',
+                'content' => $content, //'<h1>'.$sec_item->title().'</h1><p>This is a section content only for example</p>',
                 'page_title' => $sec_item->title(),
                 'navigation' => content()->section_menu($section)
             ], $data);
