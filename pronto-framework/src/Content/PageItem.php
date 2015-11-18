@@ -25,7 +25,7 @@ class PageItem implements Menuable
 		$this->slug = Content::str_to_slug($file->getFilename());
 		
 		$relativePath = (!is_null($relativePath) && !empty($relativePath) ? $relativePath : $file->getRelativePath());
-		$this->path =  $relativePath . (ends_with($relativePath, '/') ? '' : '/') . $file->getFilename();
+		$this->path =  $relativePath . (ends_with($relativePath, '/') ? '' : '/') . $this->slug;
 		 
 		$this->file = $file;
 	}
