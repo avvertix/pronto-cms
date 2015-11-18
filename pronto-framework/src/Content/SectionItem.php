@@ -93,7 +93,11 @@ class SectionItem  implements Menuable
 	
 	function content(){
 		//if page index.md exists in section => return index.md content
+		$index_file = realpath($this->filepath() . '/index.md');
 		
+		if(file_exists($index_file) && is_file($index_file)){
+			return file_get_contents($index_file);
+		}
 		
 		return 'This section does not have a default `index.md` file, so *use navigation Luke*';
 	}
