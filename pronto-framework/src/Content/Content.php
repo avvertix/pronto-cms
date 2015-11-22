@@ -6,6 +6,7 @@ use Pronto\Contracts\Content as ContentContract;
 use Illuminate\Filesystem\Filesystem;
 use Illuminate\Support\Collection;
 use Symfony\Component\Finder\Finder;
+use Symfony\Component\Finder\SplFileInfo;
 
 use Pronto\Exceptions\InvalidMenuItemException;
 use Pronto\Exceptions\PageNotFoundException;
@@ -187,19 +188,36 @@ class Content implements ContentContract
     /**
      * Return the navigation menu for the specified section.
      *
-     * The navigation menu consists in sections, pages and other sub-sections
+     * The navigation menu consists in sections, pages and other sub-sections.
      *
      * @returns collection of MenuItem
      */
 	function section_menu($section){
+
+        /*
+            check section parent count w.r.t the content folder
+            if more than one show the parent link at least for the first direct parent
         
-        // tutte le sub-section e le rispettive page presenti in ogni section
         
-        $directory = $this->storage_path . (!is_null($section) ? '/' . $section : '');
+        */
+        
+        $section_parent = array_values(array_filter(explode('/', $section), function($e){
+            return $e !== '.' && !empty($e);
+        }));
+        
+        $section_parent_count = count($section_parent);
+        
+        $directory = $this->storage_path . (!is_null($section) ? DIRECTORY_SEPARATOR . $section : '');
         
         $finder = Finder::create()->in($directory)->depth("< 1");
         
         $items = array();
+        
+        if($section_parent_count > 0){
+            $parent = $section_parent[$section_parent_count-1];
+            
+            $items[] = SectionItem::make(new SplFileInfo(realpath($this->storage_path . DIRECTORY_SEPARATOR . $parent), '', ''), dirname($section));
+        }
         
         foreach ($finder as $file) {
             
@@ -213,7 +231,7 @@ class Content implements ContentContract
         }
         
         // SectionItem with child (SectionItem || PageItem)
-        // dd(compact('items', 'section'));
+        // dd(compact('items', 'section', 'section_parent'));
         return Collection::make($items);
     }
     
