@@ -30,10 +30,10 @@ At now the plan is to target all the modern browsers (IE10, IE11, Edge, Chrome, 
 
 ## Installation
 
-To create a new project use Composer "create-project" command. Pass it the package name (`avvertix/pronto-cms`), and the directory to create the project in (e.g. `path`). You can also provide a version as third argument, otherwise the latest version is used.
+To create a new project use Composer "create-project" command. Pass it the package name (`avvertix/pronto`), and the directory to create the project in (e.g. `path`). You can also provide a version as third argument, otherwise the latest version is used.
 
 ```bash
-php composer.phar create-project avvertix/pronto-cms path
+php composer.phar create-project avvertix/pronto path
 ```
 
 Now that all the PHP code is there you could initialize the frontend (i.e. the default theme) by launching
