@@ -10,8 +10,6 @@
 	@endif
 	
 	
-	<hr/>
-	
 	@include('partials.sections')
 
 </div>

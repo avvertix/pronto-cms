@@ -1,7 +1,8 @@
 @forelse(content()->sections() as $section)
 
-	<div>
-		<a href="{{$section->path()}}"><strong>{{$section->title()}}</strong></a>
+	<div class="grid grid--1of3 section-grid">
+		
+		<a href="{{$section->path()}}" class="grid-cell"><strong>{{$section->title()}}</strong></a>
 		
 	</div>
 
