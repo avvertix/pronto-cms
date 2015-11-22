@@ -1,5 +1,5 @@
 {
-    "name": "avvertix/pronto-cms",
+    "name": "avvertix/pronto",
     "description": "Pronto CMS. The CMS that is almost pronto (ready in italian) for you and your website.",
     "keywords": ["cms","markdown","flat-file", "site", "laravel", "lumen"],
     "license": "GPL-3.0",
