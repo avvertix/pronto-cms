@@ -48,7 +48,7 @@ class PageController extends Controller
         // Show the configured home page
         // all pages must have the menu
         
-        return pageview(content_path('index.md'), 'default.frontpage');
+        return pageview(content_path('en/index.md'), 'default.frontpage');
         
     }
     
@@ -65,53 +65,13 @@ class PageController extends Controller
     public function show($page)
     {
         
-        // is a page or a section ?
+        $p = content()->page($page);
         
-        $section = dirname($page);
-        
-        $is_section = content()->is_section($page);
-        
-        $page = basename($page);
-        
-        $data = [];
-        
-        if($is_section){
-
-            $sec_path = $section . '/' . $page;
-            
-            $sec_item = content()->section($sec_path);
-            // grab the index.md in the section for the content
-            
-            $content = app('Pronto\Markdown\Parser')->text($sec_item->content());
-            
-            $data = array_merge([
-                'content' => $content, //'<h1>'.$sec_item->title().'</h1><p>This is a section content only for example</p>',
-                'page_title' => $sec_item->title(),
-                'navigation' => content()->section_menu($section)
-            ], $data);
-            
-            return view('default.section', $data);
-        }
-        else {
-            
-            $pageitem = content()->page($page, $section);
-            
-            $content = app('Pronto\Markdown\Parser')->text($pageitem->content());
-
-            $data = array_merge([
-                'content' => $content,
-                'page_title' => $pageitem->title(),
-                'navigation' => content()->section_menu(dirname($section))
-            ], $data);
-            
-        }
-        
-        // dd($data);
-        
-        return view('default.page', $data);
+        return view('default.page', [
+            'page_title' => $p->title(),
+            'page' => $p
+        ]);
     
-        
-
     }
     
 }

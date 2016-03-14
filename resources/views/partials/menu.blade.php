@@ -1,8 +1,8 @@
 <ul class="menu">
 	
-	@foreach(content()->menu() as $item)
+	@foreach(content()->global_navigation() as $item)
 
-		<li><a href="{{$item->link_to()}}">{{$item->title()}}</a></li>
+		<li><a href="{{url($item->path())}}">{{$item->title()}}</a></li>
 
 	@endforeach
 

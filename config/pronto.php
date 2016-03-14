@@ -15,9 +15,7 @@ return [
 
     'title' => env('PRONTO_APP_TITLE', 'Your Pronto &micro;-site'),
     
-    'logo' => env('PRONTO_APP_LOGO', 'logo.png'),
     
-    'theme' => env('PRONTO_APP_THEME', 'default'),
     
     'allow_json_config' => env('PRONTO_CONFIG_ALLOW_JSON', false),
     

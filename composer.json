@@ -6,7 +6,7 @@
     "type": "project",
     "require": {
         "php": ">=5.5.9",
-        "avvertix/pronto-framework": "@dev"
+        "avvertix/pronto-framework": "^0.1.0"
     },
     "require-dev": {
         "phpunit/phpunit": "~4.0",
@@ -29,6 +29,6 @@
         "preferred-install": "dist"
         
     },
-    "minimum-stability":"dev"
+    "minimum-stability":"stable"
     
 }
