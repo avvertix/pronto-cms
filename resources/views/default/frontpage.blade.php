@@ -5,8 +5,8 @@
 
 <div class="container">
 	
-	@if(isset($content))
-		{!! $content !!}
+	@if(isset($page))
+		{!! $page->toHtml() !!}
 	@endif
 	
 	

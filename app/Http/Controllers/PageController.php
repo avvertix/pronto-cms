@@ -45,10 +45,15 @@ class PageController extends Controller
      */
     public function index(){
         
-        // Show the configured home page
-        // all pages must have the menu
         
-        return pageview(content_path('en/index.md'), 'default.frontpage');
+        //app('translator')->setLocale('en');
+        
+        $p = content()->homepage();
+        
+        // echo '</pre>';
+        return view('default.frontpage', [
+            'page' => $p
+        ]);
         
     }
     
@@ -69,7 +74,8 @@ class PageController extends Controller
         
         return view('default.page', [
             'page_title' => $p->title(),
-            'page' => $p
+            'page' => $p,
+            'section_menu' => content()->pages($p->path())
         ]);
     
     }

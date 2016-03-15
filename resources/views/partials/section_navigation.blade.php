@@ -1,7 +1,12 @@
 
-@if(isset($navigation))
+@if(isset($section_menu))
 
-navigation set
+@foreach ($section_menu as $se)
+    
+    {{ $se->metadata('TOCTitle', $se->title()) }}
+
+    
+@endforeach
 
 
 @else 

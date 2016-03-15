@@ -9,7 +9,10 @@ class ExampleTest extends TestCase
      */
     public function testBasicExample()
     {
-        $this->visit('/')
-             ->see('Pronto');
+        $this->get('/');
+        
+        $this->assertRegExp(
+            '/Pronto/', $this->response->getContent()
+        );
     }
 }

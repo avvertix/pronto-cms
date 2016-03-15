@@ -10,8 +10,8 @@
 
 <div class="page-content grid-cell">
 
-	@if(isset($content))
-		{!! $content !!}
+	@if(isset($page))
+		{!! $page->toHtml() !!}
 	@endif
 	
 </div>

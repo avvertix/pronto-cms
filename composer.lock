@@ -9,16 +9,16 @@
     "packages": [
         {
             "name": "avvertix/pronto-framework",
-            "version": "v0.1.0",
+            "version": "v0.1.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/avvertix/pronto-framework.git",
-                "reference": "3ceed44b79bf7349be86234aaf329ee2f92c1a5c"
+                "reference": "33bb8af9064d0c330a4ee9de23ca4c3827c2d98c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/avvertix/pronto-framework/zipball/3ceed44b79bf7349be86234aaf329ee2f92c1a5c",
-                "reference": "3ceed44b79bf7349be86234aaf329ee2f92c1a5c",
+                "url": "https://api.github.com/repos/avvertix/pronto-framework/zipball/33bb8af9064d0c330a4ee9de23ca4c3827c2d98c",
+                "reference": "33bb8af9064d0c330a4ee9de23ca4c3827c2d98c",
                 "shasum": ""
             },
             "require": {
@@ -61,7 +61,7 @@
                 "php",
                 "pronto"
             ],
-            "time": "2016-03-14 18:47:47"
+            "time": "2016-03-15 18:31:30"
         },
         {
             "name": "doctrine/inflector",
