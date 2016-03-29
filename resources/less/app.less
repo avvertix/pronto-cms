@@ -141,25 +141,31 @@ header {
     
     background: @darkmatter;
     
-    padding: 10px 0;
+    padding: 4px 0;
     
-    a, a:visited {
+    a {
         color: @light;
         text-decoration: none;
-    }
-    
-    a:hover {
-        color: @lightmatter
-    }
-    
-    a:active {
-        color: @darkmatter;
-        background: @lightmatter;
-    }
-    
-    .title {
-        padding-left: 6px;
-        // width: @sidebar-width;
+        padding: 6px;
+        
+        &:visited {
+            color: @light;
+        }
+        
+        &:hover {
+            color: @lightmatter
+        }
+        
+        &:active {
+            color: @darkmatter;
+            background: @lightmatter;
+        }
+        
+        &:focus {
+            color: @darkmatter !important;
+            outline: 1px solid #fff;
+        }
+        
     }
 
 }
