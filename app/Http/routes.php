@@ -1,7 +1,5 @@
 <?php
 
-
-
 /*
 |--------------------------------------------------------------------------
 | Application Routes
@@ -13,10 +11,7 @@
 |
 */
 
-/**
-    Home Route
-    Handles the application index
-*/
+/* Home Route - Handles the application index */
 $app->get('/', [
     'as' => 'home', 
     'uses' => 'PageController@index'
@@ -29,13 +24,13 @@ $app->get('/', [
 //     'as' => 'page', 
 //     'uses' => 'ImagesController@show'
 // ]);
+
+/* Page Route - Handles the show for the general pages */
 $app->get('/{page:[A-Za-z0-9\-\/]+}', [
     'as' => 'page', 
     'uses' => 'PageController@show'
 ]);
 
-
-// /[{section}/[{sub-section}]/[{sub-sub-section}]/]{page} => general page route, must support first level page, and Nth level page with N folder nesting
 
 // /i/{slug,name}[/200x200] => image assets route with support for resizing and scale parameters => cache based on file path hash and request parameters
 // /a/{slug,name} => generic assets route

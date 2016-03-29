@@ -79,8 +79,6 @@ $app->singleton(
 // $app->register(App\Providers\AppServiceProvider::class);
 // $app->register(App\Providers\EventServiceProvider::class);
 
-$app->configure('pronto');
-
 $app->register(Pronto\Providers\ContentServiceProvider::class);
 $app->register(Pronto\Providers\ParsingServiceProvider::class);
 

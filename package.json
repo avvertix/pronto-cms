@@ -1,6 +1,6 @@
 {
   "name": "pronto-cms",
-  "version": "1.0.0",
+  "version": "0.1.0",
   "description": "Pronto CMS. The CMS that is almost pronto (ready in italian) for you and your website.",
   "main": "index.js",
   "directories": {
@@ -16,19 +16,20 @@
     "url": "https://github.com/avvertix/pronto-cms.git"
   },
   "devDependencies": {
-    "gulp": "^3.9.0",
-    "gulp-less": "^3.0.3",
-    "gulp-concat": "~2.5.2",
-    "gulp-minify-css": "~1.1.1",
     "browserify": "~11.2.0",
-    "gulp-util": "*",
+    "gulp": "^3.9.0",
+    "gulp-concat": "~2.5.2",
+    "gulp-cssnano": "^2.1.1",
+    "gulp-less": "^3.0.3",
     "gulp-uglify": "*",
+    "gulp-util": "^3.0.7",
     "vinyl-buffer": "*",
     "vinyl-source-stream": "*"
   },
   "dependencies": {
+    "Pintsize": "alistairtweedie/pintsize",
     "highlight.js": "~8.8.0",
-    "sanitize.css": "~2.1.1"
+    "normalize.css": "^4.0.0"
   },
   "author": "Alessio Vertemati",
   "license": "GPL-3.0"

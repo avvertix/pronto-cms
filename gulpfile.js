@@ -1,12 +1,11 @@
 var gulp = require('gulp'),
 	less = require('gulp-less'),
 	concat = require('gulp-concat'),
-	minifyCSS = require('gulp-minify-css'),
-  browserify = require('browserify'),
-  gutil = require('gulp-util'),
-  uglify = require('gulp-uglify'),
-  source = require('vinyl-source-stream'),
-  buffer = require('vinyl-buffer');
+	cssnano = require('gulp-cssnano'),
+    browserify = require('browserify'),
+    uglify = require('gulp-uglify'),
+    source = require('vinyl-source-stream'),
+    buffer = require('vinyl-buffer');
 
 var resource_path = 'resources/',
 	build_path = 'public/';
@@ -14,7 +13,7 @@ var resource_path = 'resources/',
 gulp.task('less', function(){
     return gulp.src(resource_path + 'less/app.less')
         .pipe(less())
-		.pipe(minifyCSS())
+		.pipe(cssnano())
         .pipe(gulp.dest( build_path + 'css'));
 });
 
@@ -29,7 +28,6 @@ gulp.task('hjs', function (done) {
     .pipe(source('highlight.js'))
     .pipe(buffer())
         .pipe(uglify())
-        // .on('error', gutil.log)
     .pipe(gulp.dest( build_path + 'js/'));
 })
 
