@@ -2,13 +2,11 @@
 
 @section('main')
 
-<div class="container grid grid--gutters">
+<div class="container flex">
 
-<div class="sidebar grid-cell u-1of3">
-	@include('partials.section_navigation')
-</div>
+@include('partials.section_navigation')
 
-<div class="page-content grid-cell">
+<div class="page-content">
 
 	@if(isset($page))
 		{!! $page->toHtml() !!}

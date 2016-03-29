@@ -1,20 +1,14 @@
 
-@if(isset($section_menu))
+@if(isset($section_menu) && !$section_menu->isEmpty())
 
-@foreach ($section_menu as $se)
-    
-    {{ $se->metadata('TOCTitle', $se->title()) }}
+    <div class="sidebar col col--3">
 
-    
-@endforeach
+        @foreach ($section_menu as $se)
+            
+            {{ $se->metadata('TOCTitle', $se->title()) }}
 
+        @endforeach
 
-@else 
-
-No Navigation is set
-
+    </div>
 
 @endif
-
-
-
